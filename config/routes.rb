@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :events, only: [:index]
   get 'api/get_events', to: 'events#get_events'
+  get 'api/post_event', to: 'events#post_event'
 
 end

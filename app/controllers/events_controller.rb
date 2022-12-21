@@ -1,3 +1,6 @@
+require 'net/http'
+require 'net/https'
+
 class EventsController < ApplicationController
 
   def index
@@ -12,15 +15,24 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      redirect_to root_path
+      render json: {status: 'SUCCESS', message:'Saved event', data: @event}, status: :ok
     else
-      render :new
+      render json: {status: 'ERROR', message:'Events not saved', data: @event.erros},status: :unprocessable_entity
     end
   end
 
   def get_events
     @events = Event.all
     render json: @events
+  end
+
+  def post_event
+    @event = Event.new(event_params)
+    if @event.save
+      render json: {status: 'SUCCESS', message:'Saved event', data: @event}, status: :ok
+    else
+      render json: {status: 'ERROR', message:'Events not saved', data: @event.erros},status: :unprocessable_entity
+    end
   end
 
   private
