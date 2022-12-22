@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :events, only: [:index]
+  resources :events, only: [:index, :new, :create]
   get 'api/get_events', to: 'events#get_events'
   get 'api/post_event', to: 'events#post_event'
 
