@@ -30,9 +30,9 @@ class EventsController < ApplicationController
   def post_event
     @event = Event.new(event_params)
     if @event.save
-      render json: {status: 'SUCCESS', message:'Saved event', data: @event}, status: :ok
+      render json: {status: 'SUCCESS', message:'Saved event', data:@event}, status: :ok
     else
-      render json: {status: 'ERROR', message:'Events not saved', data: @event.erros}, status: :unprocessable_entity
+      render json: {status: 'ERROR', message:'Event not saved', data:@event.erros}, status: :unprocessable_entity
     end
   end
 
